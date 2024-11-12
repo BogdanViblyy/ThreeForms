@@ -1,4 +1,5 @@
-﻿using Timer = System.Windows.Forms.Timer;
+﻿using System.Windows.Forms;
+using Timer = System.Windows.Forms.Timer;
 
 namespace ThreeForms
 {
@@ -26,7 +27,7 @@ namespace ThreeForms
         private Label dividedRightLabel;
         private Label dividedRightLabelSecond;
         private NumericUpDown quotient;
-        private Button startButton;
+        private Button startButton, colorBtn, textColorBtn;
         private Timer timer1 = new Timer();
 
         // Create a Random object called randomizer 
@@ -56,7 +57,7 @@ namespace ThreeForms
         // This integer variable keeps track of the 
         // remaining time.
         int timeLeft;
-
+        private ColorDialog colorDialog2;
         public MathQuiz()
         {
             this.Width = 500;
@@ -260,6 +261,20 @@ namespace ThreeForms
             startButton.Location = new Point(163, 275);
             startButton.Click += startButton_Click;
 
+            colorDialog2 = new ColorDialog();
+
+
+            colorBtn = new Button();
+            colorBtn.Text = "Set the background color";
+            colorBtn.AutoSize = true;
+            colorBtn.Click += backgroundButton_Click;
+
+            textColorBtn = new Button();
+            textColorBtn.Text = "Set the text color";
+            textColorBtn.AutoSize = true;
+            textColorBtn.Click += textButton_Click;
+            textColorBtn.Location = new Point(0, 30);
+
             InitializeControls();
         }
         private bool CheckTheAnswer()
@@ -369,6 +384,16 @@ namespace ThreeForms
                 answerBox.Select(0, lengthOfAnswer);
             }
         }
+        private void backgroundButton_Click(object sender, EventArgs e)
+        {
+            if (colorDialog2.ShowDialog() == DialogResult.OK)
+                this.BackColor = colorDialog2.Color;
+        }
+        private void textButton_Click(object sender, EventArgs e)
+        {
+            if (colorDialog2.ShowDialog() == DialogResult.OK)
+                this.ForeColor = colorDialog2.Color;
+        }
         private void InitializeControls()
         {
             Controls.Add(timeLabel);
@@ -394,6 +419,8 @@ namespace ThreeForms
             Controls.Add(dividedRightLabelSecond);
             Controls.Add(quotient);
             Controls.Add(startButton);
+            Controls.Add(colorBtn); 
+            Controls.Add(textColorBtn);
         }
     }
 }
