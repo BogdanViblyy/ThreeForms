@@ -48,7 +48,7 @@ namespace ThreeForms
         public MatchingGame()
         {
             this.Width = 600;
-            this.Height = 600;
+            this.Height = 600;           
             this.Text = "Matching Game";
 
             tableLayoutPanel1 = new TableLayoutPanel();
@@ -117,7 +117,7 @@ namespace ThreeForms
 
         private void AssignIconsToSquares()
         {
-            List<string> availableIcons = new List<string>(icons); // Make a copy so we don't modify the original list
+            List<string> availableIcons = new List<string>(icons); 
 
             foreach (Control control in tableLayoutPanel1.Controls)
             {
@@ -127,9 +127,9 @@ namespace ThreeForms
                     int randomNumber = random.Next(availableIcons.Count);
                     string imagePath = availableIcons[randomNumber];
 
-                    // Set the Image property to null to hide it initially
+                    
                     iconLabel.Image = null;
-                    iconLabel.Tag = imagePath; // Store the image path in the Tag property
+                    iconLabel.Tag = imagePath; 
                     availableIcons.RemoveAt(randomNumber);
                 }
             }
@@ -137,22 +137,19 @@ namespace ThreeForms
 
         private void label1_Click(object sender, EventArgs e)
         {
-            //if (timer1.Enabled == true)
-            //    return;
+            if (timer1.Enabled) 
+                return;
 
             Label clickedLabel = sender as Label;
-
             if (clickedLabel != null)
             {
                 if (clickedLabel.ForeColor == Color.Black)
                     return;
 
-                
                 string imagePath = clickedLabel.Tag as string;
                 if (!string.IsNullOrEmpty(imagePath) && System.IO.File.Exists(imagePath))
                 {
                     Image originalImage = Image.FromFile(imagePath);
-                    
                     Image resizedImage = new Bitmap(originalImage, new Size(clickedLabel.Width, clickedLabel.Height));
                     clickedLabel.Image = resizedImage;
                 }
@@ -164,31 +161,21 @@ namespace ThreeForms
                     firstClicked = clickedLabel;
                     return;
                 }
-               
+
                 secondClicked = clickedLabel;
 
                 
-
-                if (firstClicked.Image == secondClicked.Image)
+                if (firstClicked.Tag == secondClicked.Tag)
                 {
-                    
                     matchedPairs++;
-                    string imagePath1 = firstClicked.Tag as string;
-                    Image originalImage1 = Image.FromFile(imagePath1);
-
-                    Image resizedImage1 = new Bitmap(originalImage1, new Size(firstClicked.Width, firstClicked.Height));
-                    firstClicked.Image = resizedImage1;
-                    string imagePath2 = secondClicked.Tag as string;
-                    Image originalImage2 = Image.FromFile(imagePath2);
-
-                    Image resizedImage2 = new Bitmap(originalImage2, new Size(secondClicked.Width, secondClicked.Height));
-                    secondClicked.Image = resizedImage2;
                     firstClicked = null;
                     secondClicked = null;
-                    return;
+                    CheckForWinner();
                 }
-                CheckForWinner();
-                timer1.Start();
+                else
+                {
+                    timer1.Start(); 
+                }
             }
         }
 
@@ -196,7 +183,7 @@ namespace ThreeForms
         {
             timer1.Stop();
 
-            // Only hide images that don't match
+            
             if (firstClicked.Image != secondClicked.Image)
             {
                 firstClicked.Image = null;
