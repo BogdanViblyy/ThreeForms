@@ -52,7 +52,7 @@ namespace ThreeForms
             this.Text = "Matching Game";
 
             tableLayoutPanel1 = new TableLayoutPanel();
-            tableLayoutPanel1.BackColor = Color.CornflowerBlue;
+            tableLayoutPanel1.BackColor = Color.White;
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.CellBorderStyle = TableLayoutPanelCellBorderStyle.Inset;
             tableLayoutPanel1.ColumnCount = 4;
@@ -106,7 +106,7 @@ namespace ThreeForms
         {
             Label label = new Label
             {
-                BackColor = Color.CornflowerBlue,
+                BackColor = Color.White,
                 AutoSize = false,
                 Dock = DockStyle.Fill,
                 TextAlign = ContentAlignment.MiddleCenter

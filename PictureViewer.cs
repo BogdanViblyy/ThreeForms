@@ -6,7 +6,7 @@ namespace ThreeForms
         private PictureBox pictureBox1;
         private CheckBox checkBox1;
         private FlowLayoutPanel flowLayoutPanel1;
-        private Button btn1, btn2, btn3, btn4;
+        private Button btn1, btn2, btn3, btn4, btn5;
         private OpenFileDialog openFileDialog1;
         private ColorDialog colorDialog1;
         public PictureViewer()
@@ -48,9 +48,14 @@ namespace ThreeForms
             btn3.AutoSize = true;
             btn3.Click += backgroundButton_Click;
             btn4 = new Button();
-            btn4.Text = "Close";
+            btn4.Text = "Set the background color";
             btn4.AutoSize = true;
-            btn4.Click += closeButton_Click;
+            btn4.Click += backgroundButton_Click;
+
+            btn5 = new Button();
+            btn5.Text = "Close";
+            btn5.AutoSize = true;
+            btn5.Click += closeButton_Click;
 
             openFileDialog1 = new OpenFileDialog();
             openFileDialog1.Filter = "JPEG Files (*.jpg)|*.jpg|PNG Files (*.png)|*.png|BMP Files (*.bmp)|*.bmp|All files (*.*)|*.*";
@@ -113,7 +118,7 @@ namespace ThreeForms
             flowLayoutPanel1.Controls.Add(btn1);
             flowLayoutPanel1.Controls.Add(btn2);
             flowLayoutPanel1.Controls.Add(btn3);
-            flowLayoutPanel1.Controls.Add(btn4);
+            flowLayoutPanel1.Controls.Add(btn5);
             tableLayoutPanel1.Controls.Add(flowLayoutPanel1, 1, 1);
         }
     }
